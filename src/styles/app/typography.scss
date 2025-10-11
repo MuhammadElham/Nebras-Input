@@ -1,0 +1,24 @@
+// ✍️ Typography and text styling
+
+body {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  color: $default;
+  background-color: $white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $purple;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: $default;
+}
+
+.text-error {
+  color: $error;
+}

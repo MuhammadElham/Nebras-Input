@@ -1,0 +1,23 @@
+// ⚙️ Common reusable SCSS mixins
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin input-style($width: 150px) {
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  width: $width;
+  font-family: $font-family;
+  font-size: $font-size-base;
+  color: $default;
+}
