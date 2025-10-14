@@ -9,7 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 interface IInputProps extends IReducerProps {
-  fieldid: string;
+  fieldid: string; 
   isCriteriaPanel?: boolean;
   data?: any[];
   item?: any;
@@ -34,10 +34,10 @@ class Input extends Component<IInputProps, IInputState> {
 
   async handleOpenHelpPanel(fieldid: string, helpwhere: string, displayhelpobject: string, processcode: string) {
     this.setState({ loading: true });
-    await fetchHelpData(fieldid, helpwhere, displayhelpobject, processcode);
+    await fetchHelpData(fieldid, helpwhere, displayhelpobject, processcode); // ?
     this.setState({ loading: false });
 
-    const { drawerConfig, handleDrawer } = this.props;
+    const { drawerConfig, handleDrawer } = this.props; // ?
     handleDrawer({
       showSidePanelData: !drawerConfig.defaultDrawerConfig.open,
       defaultDrawerConfig: {

@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 export default function Icon({ name, size, customStyles, customEventhandler }: any) {
   return (
     <span style={customStyles} onClick={customEventhandler}>
-      <Search size={16} />
+      <Search size={size} name={name} />
     </span>
   );
 }
