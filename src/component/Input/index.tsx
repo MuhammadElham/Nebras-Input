@@ -8,12 +8,21 @@ import { fetchHelpData } from "@/utils/global-utils"; // make it dummy
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+// custom interface
+interface ILoggeedInUserData {
+  screenVM: {
+    docKey: string;
+  };
+}
+
 interface IInputProps extends IReducerProps {
-  fieldid: string; 
+  fieldid: string;
   isCriteriaPanel?: boolean;
   data?: any[];
   item?: any;
   onChange?: (fieldid: string, value: string) => void;
+  inputFields?: any;
+  loggedInUserData: ILoggeedInUserData; // custom
 }
 
 interface IInputState {
@@ -31,13 +40,17 @@ class Input extends Component<IInputProps, IInputState> {
       errors: {},
     };
   }
-
+  // ?
   async handleOpenHelpPanel(fieldid: string, helpwhere: string, displayhelpobject: string, processcode: string) {
     this.setState({ loading: true });
     await fetchHelpData(fieldid, helpwhere, displayhelpobject, processcode); // ?
+    console.log("Fetch Help Data = ", fetchHelpData); // i render dummy data
     this.setState({ loading: false });
 
     const { drawerConfig, handleDrawer } = this.props; // ?
+    console.log("Drawer Config = ", drawerConfig); // -- undefined
+    console.log("Handle Config = ", handleDrawer); // -- undefined
+
     handleDrawer({
       showSidePanelData: !drawerConfig.defaultDrawerConfig.open,
       defaultDrawerConfig: {
@@ -49,7 +62,12 @@ class Input extends Component<IInputProps, IInputState> {
   }
 
   render() {
-    const { isCriteriaPanel, loggedInUserData, inputFields, webConfig, fieldid, item: providedItem } = this.props;
+    const { isCriteriaPanel, loggedInUserData, inputFields, fieldid, item: providedItem } = this.props;
+    console.log("this.props = ", this.props);
+    console.log("providedItem = ", providedItem); // ?
+    console.log("isCriteriaPanel = ", isCriteriaPanel); // ?
+
+    console.log("logged In User Data = ", loggedInUserData);
 
     if (!inputFields || !loggedInUserData) return;
 
@@ -77,39 +95,42 @@ class Input extends Component<IInputProps, IInputState> {
       customError,
       isError,
       defaultValue,
-      isChangeable,
+      isChangeable, // ?
     } = item;
     const { docKey } = loggedInUserData.screenVM || {};
     console.log("docKey = ", docKey);
+    console.log("changeAble = ", isChangeable);
 
     const styledInput = docKey == fieldid && !providedItem;
-    console.log("docKey = ", docKey);
+    console.log("styledInput = ", styledInput);
     const isMandatory = ismandatorybeforecreate || ismandatoryaftercreate;
     const inputType = controltype === "TXT" ? "text" : controltype === "DTE" ? "DTE" : "number";
 
-    console.log("isCriteriaPanel = ", isCriteriaPanel);
+    console.log("isCriteriaPanel = ", isCriteriaPanel); // ?
     const inputClass = `${
       isCriteriaPanel
         ? inputStyles["input-default"]
         : inputlength <= 8
         ? inputStyles["input-xs"]
-        : inputlength <= 15
+        : inputlength <= 15 // style
         ? inputStyles["input-sm"]
         : inputlength <= 25
         ? inputStyles["input-md"]
         : inputStyles["input-lg"]
-    } ${styledInput ? inputStyles.dockeyOverrideStyles : ""}`;
+    } ${styledInput ? inputStyles.dockeyOverrideStyles : ""}`; // adding more styles
 
-    console.log("inputClass = ", inputClass);
+    console.log("inputClass = ", inputClass); // only return className 
 
+    // why using these style
     const inputContainerStylesOverrides = {
       borderRight: helpwhere || displayhelpobject ? "1px solid rgb(190, 190, 190)" : docKey == fieldid ? "" : "none",
       color: styledInput ? "7954e5" : "",
       border: isMandatory && isError ? "1px solid red" : styledInput ? "none" : "1px solid rgb(190, 190, 190)",
       borderRadius: isMandatory && isError ? "4px" : "",
     };
-    console.log("inputContainerStylesOverrides = " , inputContainerStylesOverrides);
-    
+    console.log("inputContainerStylesOverrides = ", inputContainerStylesOverrides);
+
+    // why using these style
     const inputStylesOverrides = {
       backgroundColor: isMandatory && isError ? "rgba(255, 0, 0, 0.1)" : "",
     };
@@ -127,7 +148,6 @@ class Input extends Component<IInputProps, IInputState> {
               {label}
               {isMandatory && (
                 <span className={inputStyles.requiredSterik} style={{ color: "red" }}>
-                  {" "}
                   *
                 </span>
               )}
@@ -145,8 +165,9 @@ class Input extends Component<IInputProps, IInputState> {
               selected={defaultValue || new Date()}
               onChange={(e) => {
                 if (isChangeable) {
-                  const isoDate = e?.toISOString();                  
-                  this.props.handleChangeInputFields({ fieldid, newValue: isoDate });
+                  const isoDate = e?.toISOString();
+                  console.log("isoDate = ", isoDate);
+                  this.props.handleChangeInputFields({ fieldid, newValue: isoDate }); // ?
                 }
               }}
               icon={
@@ -174,7 +195,8 @@ class Input extends Component<IInputProps, IInputState> {
                   value={defaultValue}
                   className={`${isMandatory && isError && inputStyles.textAreaOverride} font-sm  font-R-Regular`}
                 />
-              ) : (                
+              ) : (
+                // input length less than 300
                 <span style={{ position: "relative", ...inputContainerStylesOverrides }}>
                   <input
                     data-rowuid=""
@@ -185,7 +207,7 @@ class Input extends Component<IInputProps, IInputState> {
                     // value={defaultValue}
                     autoComplete="off"
                     disabled={isDisabled}
-                    className={`font-sm font-R-Regular ${inputClass}`}
+                    className={`font-sm font-R-Regular ${inputClass}`} // inputClass have only className
                     style={inputStylesOverrides}
                     onChange={(e) => isChangeable && this.props.handleChangeInputFields({ fieldid, newValue: e.target.value })}
                     required={isMandatory}

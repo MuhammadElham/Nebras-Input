@@ -6,9 +6,8 @@ class App extends Component {
     return (
       <div>
         <Input fieldid="purchaseorderno" />
-        {/* 
-        <Input fieldid="purchaseorderno" />
         <Input fieldid="purchasetype" />
+        {/* 
         <Input fieldid="purchaseaccount" />
         <Input fieldid="invoiceaccount" />
         <Input fieldid="invoiceaddressid" />
