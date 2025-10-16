@@ -96021,8 +96021,23 @@ const initialState = {
   drawerConfig: {
     defaultDrawerConfig: { open: false },
   },
-   loggedInUserData: {
-    screenVM: { docKey: "purchaseorderno" },
+  loggedInUserData: {
+    screenVM: {
+      docKey: [
+        "purchaseorderno",
+        "purchasetype",
+        "purchaseaccount",
+        "invoiceaccount",
+        "invoiceaddressid",
+        "postingdate",
+        "requireddate",
+        "notes",
+        "deliverytermno",
+        "deliverymodeno",
+        "contactno",
+        "deliveryaddress",
+      ],
+    },
   },
 };
 

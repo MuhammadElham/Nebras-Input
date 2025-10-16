@@ -7,7 +7,6 @@ class App extends Component {
       <div>
         <Input fieldid="purchaseorderno" />
         <Input fieldid="purchasetype" />
-        {/* 
         <Input fieldid="purchaseaccount" />
         <Input fieldid="invoiceaccount" />
         <Input fieldid="invoiceaddressid" />
@@ -17,7 +16,7 @@ class App extends Component {
         <Input fieldid="deliverytermno" />
         <Input fieldid="deliverymodeno" />
         <Input fieldid="contactno" />
-        <Input fieldid="deliveryaddress" /> */}
+        <Input fieldid="deliveryaddress" />
       </div>
     );
   }

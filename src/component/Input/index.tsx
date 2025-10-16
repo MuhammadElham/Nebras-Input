@@ -101,7 +101,8 @@ class Input extends Component<IInputProps, IInputState> {
     console.log("docKey = ", docKey);
     console.log("changeAble = ", isChangeable);
 
-    const styledInput = docKey == fieldid && !providedItem;
+    // const styledInput = docKey == fieldid && !providedItem;
+    const styledInput = Array.isArray(docKey) ? docKey.includes(fieldid) && !providedItem : docKey == fieldid && !providedItem;
     console.log("styledInput = ", styledInput);
     const isMandatory = ismandatorybeforecreate || ismandatoryaftercreate;
     const inputType = controltype === "TXT" ? "text" : controltype === "DTE" ? "DTE" : "number";
@@ -119,7 +120,7 @@ class Input extends Component<IInputProps, IInputState> {
         : inputStyles["input-lg"]
     } ${styledInput ? inputStyles.dockeyOverrideStyles : ""}`; // adding more styles
 
-    console.log("inputClass = ", inputClass); // only return className 
+    console.log("inputClass = ", inputClass); // only return className
 
     // why using these style
     const inputContainerStylesOverrides = {
