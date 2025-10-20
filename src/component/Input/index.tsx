@@ -10,12 +10,12 @@ import "react-datepicker/dist/react-datepicker.css";
 
 // custom interface
 interface ILoggeedInUserData {
-  screenVM: {
+  screenVM: { // ?
     docKey: string;
   };
 }
 
-interface IInputProps extends IReducerProps {
+interface IInputProps extends IReducerProps { 
   fieldid: string;
   isCriteriaPanel?: boolean;
   data?: any[];
@@ -102,7 +102,7 @@ class Input extends Component<IInputProps, IInputState> {
     console.log("changeAble = ", isChangeable);
 
     // const styledInput = docKey == fieldid && !providedItem;
-    const styledInput = Array.isArray(docKey) ? docKey.includes(fieldid) && !providedItem : docKey == fieldid && !providedItem;
+    const styledInput = Array.isArray(docKey) ? docKey.includes(fieldid) && !providedItem : docKey == fieldid && !providedItem; // custom made 
     console.log("styledInput = ", styledInput);
     const isMandatory = ismandatorybeforecreate || ismandatoryaftercreate;
     const inputType = controltype === "TXT" ? "text" : controltype === "DTE" ? "DTE" : "number";

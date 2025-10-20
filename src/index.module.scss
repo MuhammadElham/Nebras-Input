@@ -128,7 +128,8 @@
 
 
     // container wraaper for help svg and input control 
-    >span { // ? 
+    >span {
+        // ? 
         display: flex;
         align-items: center;
         border-radius: 4px;
@@ -240,4 +241,83 @@
     // justify-content: center;
     border-radius: 2px;
     // padding: 20px !important;
+}
+
+// My SCSS
+.appWrapper {
+    min-height: 100vh;
+    background-color: #e3f2fd;
+}
+
+// Change -> NavBar
+.changeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+
+    .navBar {
+        display: flex;
+        gap: 10px;
+
+        .iconText {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: #304c9b;
+            color: white;
+            padding: 2px 8px;
+        }
+
+        h2 {
+            color: rgb(78, 78, 78);
+            font-weight: 500;
+            font-size: 22px;
+        }
+    }
+
+    // Button
+    .buttonGroup {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 18px;
+        background-color: transparent;
+        color: #304c9b;
+        font-weight: 600;
+        border: 2px solid #304c9b;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        svg {
+            color: white;
+        }
+    }
+}
+
+// Change -> HeaderInfo
+.headerInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    margin: 0px 20px;
+    padding: 10px 20px;
+    background-color: white;
+    cursor: pointer;
+
+    span {
+        text-transform: uppercase;
+        
+    }
 }
