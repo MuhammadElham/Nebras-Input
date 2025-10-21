@@ -44,12 +44,12 @@ class Input extends Component<IInputProps, IInputState> {
   async handleOpenHelpPanel(fieldid: string, helpwhere: string, displayhelpobject: string, processcode: string) {
     this.setState({ loading: true });
     await fetchHelpData(fieldid, helpwhere, displayhelpobject, processcode); // ?
-    console.log("Fetch Help Data = ", fetchHelpData); // i render dummy data
+    // console.log("Fetch Help Data = ", fetchHelpData); // i render dummy data
     this.setState({ loading: false });
 
     const { drawerConfig, handleDrawer } = this.props; // ?
-    console.log("Drawer Config = ", drawerConfig); // -- undefined
-    console.log("Handle Config = ", handleDrawer); // -- undefined
+    // console.log("Drawer Config = ", drawerConfig); // -- undefined
+    // console.log("Handle Config = ", handleDrawer); // -- undefined
 
     handleDrawer({
       showSidePanelData: !drawerConfig.defaultDrawerConfig.open,
@@ -63,11 +63,11 @@ class Input extends Component<IInputProps, IInputState> {
 
   render() {
     const { isCriteriaPanel, loggedInUserData, inputFields, fieldid, item: providedItem } = this.props;
-    console.log("this.props = ", this.props);
-    console.log("providedItem = ", providedItem); // ?
-    console.log("isCriteriaPanel = ", isCriteriaPanel); // ?
+    // console.log("this.props = ", this.props);
+    // console.log("providedItem = ", providedItem); // ?
+    // console.log("isCriteriaPanel = ", isCriteriaPanel); // ?
 
-    console.log("logged In User Data = ", loggedInUserData);
+    // console.log("logged In User Data = ", loggedInUserData);
 
     if (!inputFields || !loggedInUserData) return;
 
@@ -77,8 +77,8 @@ class Input extends Component<IInputProps, IInputState> {
         return item?.fieldid === fieldid;
       });
 
-    console.log("loggedInUserData = ", loggedInUserData);
-    console.log("item:", item);
+    // console.log("loggedInUserData = ", loggedInUserData);
+    // console.log("item:", item);
 
     if (!item) return;
 
@@ -98,16 +98,16 @@ class Input extends Component<IInputProps, IInputState> {
       isChangeable, // ?
     } = item;
     const { docKey } = loggedInUserData.screenVM || {};
-    console.log("docKey = ", docKey);
-    console.log("changeAble = ", isChangeable);
+    // console.log("docKey = ", docKey);
+    // console.log("changeAble = ", isChangeable);
 
     // const styledInput = docKey == fieldid && !providedItem;
     const styledInput = Array.isArray(docKey) ? docKey.includes(fieldid) && !providedItem : docKey == fieldid && !providedItem; // custom made 
-    console.log("styledInput = ", styledInput);
+    // console.log("styledInput = ", styledInput);
     const isMandatory = ismandatorybeforecreate || ismandatoryaftercreate;
     const inputType = controltype === "TXT" ? "text" : controltype === "DTE" ? "DTE" : "number";
 
-    console.log("isCriteriaPanel = ", isCriteriaPanel); // ?
+    // console.log("isCriteriaPanel = ", isCriteriaPanel); // ?
     const inputClass = `${
       isCriteriaPanel
         ? inputStyles["input-default"]
@@ -120,7 +120,7 @@ class Input extends Component<IInputProps, IInputState> {
         : inputStyles["input-lg"]
     } ${styledInput ? inputStyles.dockeyOverrideStyles : ""}`; // adding more styles
 
-    console.log("inputClass = ", inputClass); // only return className
+    // console.log("inputClass = ", inputClass); // only return className
 
     // why using these style
     const inputContainerStylesOverrides = {
@@ -129,7 +129,7 @@ class Input extends Component<IInputProps, IInputState> {
       border: isMandatory && isError ? "1px solid red" : styledInput ? "none" : "1px solid rgb(190, 190, 190)",
       borderRadius: isMandatory && isError ? "4px" : "",
     };
-    console.log("inputContainerStylesOverrides = ", inputContainerStylesOverrides);
+    // console.log("inputContainerStylesOverrides = ", inputContainerStylesOverrides);
 
     // why using these style
     const inputStylesOverrides = {
@@ -144,7 +144,7 @@ class Input extends Component<IInputProps, IInputState> {
             // docKey !== fieldid
             <label
               className={` ${styledInput ? `${inputStyles.dockeyLabel}  font-sm fw-300` : ""}  font-xs font-R-SemiBold border-light`}
-              style={{ width: "24%" }}
+              // style={{ width: "24%" }} commenting 
             >
               {label}
               {isMandatory && (
@@ -167,7 +167,7 @@ class Input extends Component<IInputProps, IInputState> {
               onChange={(e) => {
                 if (isChangeable) {
                   const isoDate = e?.toISOString();
-                  console.log("isoDate = ", isoDate);
+                  // console.log("isoDate = ", isoDate);
                   this.props.handleChangeInputFields({ fieldid, newValue: isoDate }); // ?
                 }
               }}

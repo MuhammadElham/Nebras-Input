@@ -87,14 +87,14 @@
         // border: 2px solid red;
         padding: 0.5rem 0.25rem;
         padding-right: 0.40rem;
-        text-align: right;
-        width: 160px;
+        // text-align: right; commenting 
+        // width: 160px; commenting
         color: $default;
         // color: red;
         // min-width: 160px;
         // max-width: 160px;
         position: relative;
-        min-width: 160px;
+        // min-width: 160px; commenting
 
         // 
         white-space: normal;
@@ -114,10 +114,10 @@
 
     .dockeyLabel {
         padding: 0.2rem 0.25rem !important;
-        min-width: 160px !important;
-        width: 160px !important;
+        // min-width: 160px !important; commenting
+        // width: 160px !important; commenting
         padding-right: 0.40rem !important;
-        color: $purple !important;
+        // color: $purple !important; commenting
         font-size: 1rem !important;
 
 
@@ -227,7 +227,7 @@
 .docKeyContainer {
 
     border: none !important;
-    border-bottom: 2px solid $purple !important;
+    // border-bottom: 2px solid $purple !important; commenting
     // width: 70%;
     // margin: 0 17%;/
     // max-width: 00px;
@@ -246,7 +246,7 @@
 // My SCSS
 .appWrapper {
     min-height: 100vh;
-    background-color: #e3f2fd;
+    background-color: #f1f1f1;
 }
 
 // Change -> NavBar
@@ -270,12 +270,6 @@
             background-color: #304c9b;
             color: white;
             padding: 2px 8px;
-        }
-
-        h2 {
-            color: rgb(78, 78, 78);
-            font-weight: 500;
-            font-size: 22px;
         }
     }
 
@@ -306,18 +300,55 @@
 }
 
 // Change -> HeaderInfo
+h2 {
+    color: rgb(78, 78, 78);
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.accordionItem {
+    border: none !important;
+
+    :global {
+        .szh-accordion__item-btn {
+            width: 100% !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            cursor: pointer !important;
+        }
+
+        .szh-accordion__item-panel {
+            padding: 0 !important;
+        }
+
+        .szh-accordion__item-content {
+            transition: height 0.25s cubic-bezier(0, 0, 0, 1) !important;
+        }
+    }
+}
+
 .headerInfo {
     display: flex;
     align-items: center;
     gap: 8px;
     font-weight: 600;
-    margin: 0px 20px;
+    margin: 0px 16px;
     padding: 10px 20px;
     background-color: white;
+    outline: none;
     cursor: pointer;
 
     span {
         text-transform: uppercase;
-        
+
     }
+
+}
+
+.accordionContentContainer {
+    background-color: white;
+    text-align: left;
+    margin: 5px 16px;
+    padding: 20px;
 }

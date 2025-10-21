@@ -4,6 +4,8 @@ import styles from "@/index.module.scss";
 
 class NavBar extends Component {
   render() {
+    const { onDisplayClick } = this.props;
+    console.log("Display Click = " , onDisplayClick)
     return (
       <div className={styles.changeContainer}>
         <div className={styles.navBar}>
@@ -20,7 +22,7 @@ class NavBar extends Component {
             <Check size={20} />
             Validate
           </button>
-          <button className={styles.btn}>
+          <button className={styles.btn} onClick={onDisplayClick}>
             <Monitor size={20} />
             Display
           </button>
