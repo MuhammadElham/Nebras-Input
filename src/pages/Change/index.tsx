@@ -11,7 +11,7 @@ class Change extends Component<{}, ChangeState> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      showDisplayTabs: false,
+      showDisplayTabs: true,
     };
   }
 

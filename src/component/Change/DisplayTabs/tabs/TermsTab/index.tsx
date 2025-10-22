@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 
-class Tabs extends Component {
+class TermsTab extends Component {
   render() {
     return (
       <div>
-        <p>1</p>
-        <p>2</p>
-        <p>3</p>
+        <h1>Terms and Condition</h1>
       </div>
     );
   }
 }
-
-export default Tabs;
+export default TermsTab;
