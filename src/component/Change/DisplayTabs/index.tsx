@@ -27,8 +27,8 @@ class DisplayTabs extends Component<{}, DisplayTabState> {
     const { activeTab } = this.state;
 
     return (
-      <div className={styles.accordionContentContainer}>
-        <div>
+      <div className={styles.tabHeaderContainer}>
+        <div className={styles.tabHeaders}>
           <button className={`${styles.tab} ${activeTab === "basicData" ? styles.activeTab : ""}`} onClick={() => this.handleTabClick("basicData")}>
             Basic Data
           </button>
@@ -55,7 +55,7 @@ class DisplayTabs extends Component<{}, DisplayTabState> {
           </button>
         </div>
         {/* Tab Content */}
-        <div>
+        <div className={styles.tabContent}>
           {activeTab === "basicData" && <BasicDataTab />}
           {activeTab === "purchaseLines" && <PurchaseLineTab />}
           {activeTab === "prepayment" && <PrepaymentTab />}

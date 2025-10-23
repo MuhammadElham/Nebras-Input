@@ -300,10 +300,11 @@
 }
 
 // Change -> HeaderInfo
-h2,h1 {
+h2,
+h1 {
     color: rgb(78, 78, 78);
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .accordionItem {
@@ -353,7 +354,34 @@ h2,h1 {
     padding: 20px;
 }
 
+.accordionContentContainerGrids {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.firstColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-self: start;
+
+}
+
 // Change -> Tabs
+.tabHeaderContainer {
+    background-color: white;
+    margin: 5px 16px;
+    text-align: left;
+}
+
+.tabHeaders {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+}
+
 .tab {
     padding: 12px 20px;
     border: none;
@@ -375,5 +403,19 @@ h2,h1 {
         border-bottom-color: #304c9b;
         background: white;
         font-weight: 600;
+    }
+}
+
+.tabContent {
+    padding: 0 20px 30px 20px;
+}
+
+// Grid
+:global {
+    .ag-theme-alpine .custom-header {
+        background-color: #304c9b;
+        color: white;
+        font-weight: 700;
+        text-align: center;
     }
 }
