@@ -24,14 +24,21 @@ class Change extends Component<{}, IChangeState> {
       showDisplayTabs: false,
     };
   }
-  // Display
   handleDisplayClick = () => {
     this.setState({ showDisplayTabs: !this.state.showDisplayTabs });
   };
-  // Tab
   handleTabClick = (tabName: string) => {
     this.setState({ activeTab: tabName });
   };
+
+  tabs = [
+    { id: "basicData", label: "Basic Data" },
+    { id: "purchaseLines", label: "Purchase Lines Items" },
+    { id: "prepayment", label: "Prepayment" },
+    { id: "terms", label: "Terms & Conditions" },
+    { id: "controller", label: "Controller" },
+    { id: "administration", label: "Administration" },
+  ];
 
   render() {
     const { activeTab, showDisplayTabs } = this.state;
@@ -131,40 +138,17 @@ class Change extends Component<{}, IChangeState> {
           {showDisplayTabs && (
             <div className={styles.tabHeaderContainer}>
               <div className={styles.tabHeaders}>
-                <button
-                  className={`${styles.tab} ${activeTab === "basicData" ? styles.activeTab : ""}`}
-                  onClick={() => this.handleTabClick("basicData")}
-                >
-                  Basic Data
-                </button>
-                <button
-                  className={`${styles.tab} ${activeTab === "purchaseLines" ? styles.activeTab : ""}`}
-                  onClick={() => this.handleTabClick("purchaseLines")}
-                >
-                  Purchase Lines Items
-                </button>
-                <button
-                  className={`${styles.tab} ${activeTab === "prepayment" ? styles.activeTab : ""}`}
-                  onClick={() => this.handleTabClick("prepayment")}
-                >
-                  Prepayment
-                </button>
-                <button className={`${styles.tab} ${activeTab === "terms" ? styles.activeTab : ""}`} onClick={() => this.handleTabClick("terms")}>
-                  Terms & Conditions
-                </button>
-                <button
-                  className={`${styles.tab} ${activeTab === "controller" ? styles.activeTab : ""}`}
-                  onClick={() => this.handleTabClick("controller")}
-                >
-                  Controller
-                </button>
-                <button
-                  className={`${styles.tab} ${activeTab === "administration" ? styles.activeTab : ""}`}
-                  onClick={() => this.handleTabClick("administration")}
-                >
-                  Administration{" "}
-                </button>
+                {this.tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    className={`${styles.tab} ${activeTab === tab.id ? styles.activeTab : ""}`}
+                    onClick={() => this.handleTabClick(tab.id)}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
+
               {/* Tab Content */}
               <div className={styles.tabContent}>
                 {activeTab === "basicData" && <BasicDataTab />}
