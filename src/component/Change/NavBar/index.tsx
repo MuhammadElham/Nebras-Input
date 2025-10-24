@@ -2,10 +2,16 @@ import React, { Component } from "react";
 import { Building, Check, Monitor, RotateCcw, CircleX } from "lucide-react";
 import styles from "@/index.module.scss";
 
-class NavBar extends Component {
+interface IPropsNavBar {
+  onDisplayClick: any;
+}
+
+class NavBar extends Component<IPropsNavBar> {
+  
   render() {
+
     const { onDisplayClick } = this.props;
-    console.log("Display Click = " , onDisplayClick)
+
     return (
       <div className={styles.changeContainer}>
         <div className={styles.navBar}>
