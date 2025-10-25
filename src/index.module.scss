@@ -456,3 +456,43 @@ h1 {
     background-color: "rgba(0, 0, 0, 0.5)";
     z-index: 999;
 }
+
+// Loader
+.loaderContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0f1729;
+    z-index: 999;
+    background: linear-gradient(135deg, #0f1729 0%, #1a2847 100%);
+
+    .imgContainer {
+        animation: pulse 1.5s ease-in-out infinite;
+
+        .img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+        }
+    }
+
+    .animation {
+        @keyframes pulse {
+
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: scale(0.95);
+            }
+        }
+    }
+}

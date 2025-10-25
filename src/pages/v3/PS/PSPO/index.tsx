@@ -25,7 +25,12 @@ class Change extends Component<{}, IChangeState> {
     };
   }
   handleDisplayClick = () => {
-    this.setState({ showDisplayTabs: !this.state.showDisplayTabs });
+    this.setState((prevState) => ({ showDisplayTabs: !prevState.showDisplayTabs }));
+  };
+  handleHeaderToggle = () => {
+    this.setState((prevState) => ({
+      showDisplayTabs: !prevState.showDisplayTabs,
+    }));
   };
   handleTabClick = (tabName: string) => {
     this.setState({ activeTab: tabName });
@@ -81,43 +86,48 @@ class Change extends Component<{}, IChangeState> {
           <Accordion>
             <AccordionItem
               header={({ state }) => (
-                <div className={styles.headerInfo}>
+                <div className={styles.headerInfo} onClick={this.handleHeaderToggle}>
                   {/* Icon */}
-                  {state.isEnter ? <Minus size={20} /> : <Plus size={20} />}
+                  {!showDisplayTabs ? <Minus size={20} /> : <Plus size={20} />}
                   {/* Heading */}
                   <span>Header Information</span>
                 </div>
               )}
               className={styles.accordionItem}
+              initialEntered={!showDisplayTabs} 
             >
-              {/* Content */}
-              <div className={`${styles.accordionContentContainer} ${styles.accordionContentContainerGrids}`}>
-                {/* Left Column */}
-                <div className={styles.formColumn}>
-                  <Input fieldid="purchaseorderno" />
-                  <Input fieldid="purchasetype" />
-                  <TestDisplay text="GRBPSPOGRB01" />
-                  <Input fieldid="purchaseaccount" />
-                  <Input fieldid="invoiceaccount" />
-                  <Input fieldid="invoiceaddressid" />
-                  <TestDisplay text="grpdatesEPEE" />
-                  <Input fieldid="postingdate" />
-                  <Input fieldid="requireddate" />
-                  <Input fieldid="notes" />
-                </div>
+              {!showDisplayTabs && (
+                <>
+                  {/* Content */}
+                  <div className={`${styles.accordionContentContainer} ${styles.accordionContentContainerGrids}`}>
+                    {/* Left Column */}
+                    <div className={styles.formColumn}>
+                      <Input fieldid="purchaseorderno" />
+                      <Input fieldid="purchasetype" />
+                      <TestDisplay text="GRBPSPOGRB01" />
+                      <Input fieldid="purchaseaccount" />
+                      <Input fieldid="invoiceaccount" />
+                      <Input fieldid="invoiceaddressid" />
+                      <TestDisplay text="grpdatesEPEE" />
+                      <Input fieldid="postingdate" />
+                      <Input fieldid="requireddate" />
+                      <Input fieldid="notes" />
+                    </div>
 
-                {/* Right Column */}
-                <div className={styles.formColumn}>
-                  <TestDisplay text="GRBPSPOGRB11" />
-                  <Input fieldid="purchaseorganizationno" />
-                  <Input fieldid="purchasegroupno" />
-                  <Input fieldid="purchaseordertypeno" />
-                  <TestDisplay text="GRBPSPOGRB12" />
-                  <Input fieldid="documentreasonno" />
-                  <Input fieldid="purchasereasonfor" />
-                  <Input fieldid="requestor" />
-                </div>
-              </div>
+                    {/* Right Column */}
+                    <div className={styles.formColumn}>
+                      <TestDisplay text="GRBPSPOGRB11" />
+                      <Input fieldid="purchaseorganizationno" />
+                      <Input fieldid="purchasegroupno" />
+                      <Input fieldid="purchaseordertypeno" />
+                      <TestDisplay text="GRBPSPOGRB12" />
+                      <Input fieldid="documentreasonno" />
+                      <Input fieldid="purchasereasonfor" />
+                      <Input fieldid="requestor" />
+                    </div>
+                  </div>
+                </>
+              )}
             </AccordionItem>
           </Accordion>
 
