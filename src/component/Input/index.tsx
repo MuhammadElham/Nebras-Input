@@ -7,15 +7,17 @@ import Icon from "../Icon/index"; // make it dummy
 import { fetchHelpData } from "@/utils/global-utils"; // make it dummy
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { changeInputField, setDrawer, setLoading } from "../../redux/inputConfig";
 
 // custom interface
 interface ILoggeedInUserData {
-  screenVM: { // ?
+  screenVM: {
+    // ?
     docKey: string;
   };
 }
 
-interface IInputProps extends IReducerProps { 
+interface IInputProps extends IReducerProps {
   fieldid: string;
   isCriteriaPanel?: boolean;
   data?: any[];
@@ -23,6 +25,8 @@ interface IInputProps extends IReducerProps {
   onChange?: (fieldid: string, value: string) => void;
   inputFields?: any;
   loggedInUserData: ILoggeedInUserData; // custom
+  setLoading: any; // custom
+  setDrawer: any; // custom
 }
 
 interface IInputState {
@@ -40,26 +44,38 @@ class Input extends Component<IInputProps, IInputState> {
       errors: {},
     };
   }
-  // ?
+  // make my own
   async handleOpenHelpPanel(fieldid: string, helpwhere: string, displayhelpobject: string, processcode: string) {
-    this.setState({ loading: true });
-    await fetchHelpData(fieldid, helpwhere, displayhelpobject, processcode); // ?
-    // console.log("Fetch Help Data = ", fetchHelpData); // i render dummy data
-    this.setState({ loading: false });
-
-    const { drawerConfig, handleDrawer } = this.props; // ?
-    // console.log("Drawer Config = ", drawerConfig); // -- undefined
-    // console.log("Handle Config = ", handleDrawer); // -- undefined
-
-    handleDrawer({
-      showSidePanelData: !drawerConfig.defaultDrawerConfig.open,
-      defaultDrawerConfig: {
-        open: !drawerConfig.defaultDrawerConfig.open,
-        position: drawerConfig.defaultDrawerConfig.open ? "" : "right",
-        size: drawerConfig.defaultDrawerConfig.open ? "" : "lg",
-      },
-    });
+    const { setLoading, setDrawer } = this.props;
+    // Start Loading
+    setLoading(true);
+    // Fetch Data
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // End Loading
+    setLoading(false);
+    // Open Drawer
+    setDrawer({ open: true, position: "right", size: "lg" });
   }
+  // async handleOpenHelpPanel(fieldid: string, helpwhere: string, displayhelpobject: string, processcode: string) {
+  //   this.setState({ loading: true });
+
+  //   await fetchHelpData(fieldid, helpwhere, displayhelpobject, processcode);
+
+  //   this.setState({ loading: false });
+
+  //   const { drawerConfig, handleDrawer } = this.props; // ?
+  //   // console.log("Drawer Config = ", drawerConfig); // -- undefined
+  //   // console.log("Handle Config = ", handleDrawer); // -- undefined
+
+  //   handleDrawer({
+  //     showSidePanelData: !drawerConfig.defaultDrawerConfig.open,
+  //     defaultDrawerConfig: {
+  //       open: !drawerConfig.defaultDrawerConfig.open,
+  //       position: drawerConfig.defaultDrawerConfig.open ? "" : "right",
+  //       size: drawerConfig.defaultDrawerConfig.open ? "" : "lg",
+  //     },
+  //   });
+  // }
 
   render() {
     const { isCriteriaPanel, loggedInUserData, inputFields, fieldid, item: providedItem } = this.props;
@@ -102,7 +118,7 @@ class Input extends Component<IInputProps, IInputState> {
     // console.log("changeAble = ", isChangeable);
 
     // const styledInput = docKey == fieldid && !providedItem;
-    const styledInput = Array.isArray(docKey) ? docKey.includes(fieldid) && !providedItem : docKey == fieldid && !providedItem; // custom made 
+    const styledInput = Array.isArray(docKey) ? docKey.includes(fieldid) && !providedItem : docKey == fieldid && !providedItem; // custom made
     // console.log("styledInput = ", styledInput);
     const isMandatory = ismandatorybeforecreate || ismandatoryaftercreate;
     const inputType = controltype === "TXT" ? "text" : controltype === "DTE" ? "DTE" : "number";
@@ -144,7 +160,7 @@ class Input extends Component<IInputProps, IInputState> {
             // docKey !== fieldid
             <label
               className={` ${styledInput ? `${inputStyles.dockeyLabel}  font-sm fw-300` : ""}  font-xs font-R-SemiBold border-light`}
-              // style={{ width: "24%" }} commenting 
+              // style={{ width: "24%" }} commenting
             >
               {label}
               {isMandatory && (
@@ -241,11 +257,18 @@ class Input extends Component<IInputProps, IInputState> {
     //  : null;
   }
 }
+// const mapStateToProps = (state: any) => ({
+//   inputFields: state.inputFields.inputFields,
+//   loggedInUserData: state.inputFields.loggedInUserData,
+// });
+// export default connect(mapStateToProps)(Input);
 const mapStateToProps = (state: any) => ({
   inputFields: state.inputFields.inputFields,
   loggedInUserData: state.inputFields.loggedInUserData,
 });
-export default connect(mapStateToProps)(Input);
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Input);
-// export default Input;
+const mapDispatchToProps = {
+  setLoading: setLoading,
+  setDrawer: setDrawer,
+  handleChangeInputFields: changeInputField,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Input);

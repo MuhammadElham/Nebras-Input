@@ -1,8 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Activity } from "react";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
-  // Input
+  loading: false,
+
+  drawerConfig: {
+    open: false,
+    position: "right",
+    size: "lg",
+  },
+
   inputFields: {
     inputs: [
       {
@@ -110280,10 +110286,6 @@ const initialState = {
     },
   ],
 
-  drawerConfig: {
-    defaultDrawerConfig: { open: false },
-  },
-
   loggedInUserData: {
     Activity: "Change",
     ActivityNo: "E",
@@ -110294,12 +110296,12 @@ const initialState = {
       DimensionFields: [{}, {}, {}, {}],
       DocumentMovement: [],
       ExternalApi: [],
-      DocKey:"purchaseorderno", // fieldid
+      DocKey: "purchaseorderno", // fieldid
       HdrModel: "purchasepohdr",
-      Json:"",
-      LangNo:"EN",
-      Name:"Change Purchase Order",
-      Processcode:"PSPO",
+      Json: "",
+      LangNo: "EN",
+      Name: "Change Purchase Order",
+      Processcode: "PSPO",
     },
 
     screenVM: {
@@ -110324,7 +110326,26 @@ const initialState = {
 const webConfigSlice = createSlice({
   name: "inputFields",
   initialState,
-  reducers: {},
+  reducers: {
+    // Set Loading
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+    },
+    // Set Drawer
+    setDrawer: (state, action: PayloadAction<{ open: boolean; position?: string; size?: string }>) => {
+      state.drawerConfig.open = action.payload.open;
+      if (action.payload.position) state.drawerConfig.position = action.payload.position;
+      if (action.payload.size) state.drawerConfig.size = action.payload.size;
+    },
+    // Change handleChange
+    changeInputField: (state, action: PayloadAction<{ fieldid: string; newValue: string }>) => {
+      const field = state.inputFields.inputs.find((input) => input.fieldid === action.payload.fieldid);
+      if(field){
+        field.defaultvalue = action.payload.newValue;
+      }
+    },
+  },
 });
 
+export const { setLoading, setDrawer, changeInputField } = webConfigSlice.actions;
 export default webConfigSlice.reducer;

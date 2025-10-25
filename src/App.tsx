@@ -4,23 +4,33 @@ import styles from "@/index.module.scss";
 import Loader from "./component/Loader";
 import Error from "./component/Error";
 import Drawer from "./component/Drawer";
+import { connect } from "react-redux";
 
-class App extends Component {
+interface IAppProps {
+  loading: boolean;
+  drawerOpen: boolean;
+}
+
+class App extends Component<IAppProps> {
   render() {
+    const { loading, drawerOpen } = this.props;
     return (
       <div className={styles.appWrapper}>
-        
-        {/* <Loader /> */}
+        {loading && <Loader />}
 
         {/* <Error /> */}
 
         <Change />
 
-        {/* <Drawer /> */}
-      
+        {drawerOpen && <Drawer />}
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state: any) => ({
+  loading: state.inputFields.loading,
+  drawerOpen: state.inputFields.drawerConfig.open,
+});
+
+export default connect(mapStateToProps)(App);
