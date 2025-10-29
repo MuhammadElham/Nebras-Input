@@ -1,14 +1,15 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
+  // Loader
   loading: false,
-
+  // Drawer 
   drawerConfig: {
     open: false,
     position: "right",
     size: "lg",
   },
-
+  // Fields
   inputFields: {
     inputs: [
       {

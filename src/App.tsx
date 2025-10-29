@@ -14,16 +14,21 @@ interface IAppProps {
 class App extends Component<IAppProps> {
   render() {
     const { loading, drawerOpen } = this.props;
+    
     return (
+
       <div className={styles.appWrapper}>
+
         {loading && <Loader />}
 
         {/* <Error /> */}
 
         <Change />
 
-        {drawerOpen && <Drawer />}
+        <Drawer />
+
       </div>
+
     );
   }
 }

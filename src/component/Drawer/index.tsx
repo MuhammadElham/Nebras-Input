@@ -25,14 +25,15 @@ class Drawer extends Component<IDrawerProps> {
 
     return (
       <>
-        <div onClick={this.handleClose} className={style.drawerBackDrop} />
+        <div onClick={this.handleClose} className={`${style.drawerBackDrop} ${drawerConfig.open ? style.open : ""}`} />
         {/* Drawer */}
         <div
-          className={style.drawerContainer}
+          className={`${style.drawerContainer}
+          ${drawerConfig.position === "right" ? style.right : style.left}
+          ${drawerConfig.open ? style.open : ""}
+          `}
           style={{
             width: drawerWidth,
-            right: drawerConfig.position === "right" ? 0 : "auto",
-            left: drawerConfig.position === "left" ? 0 : "auto",
             boxShadow: drawerConfig.position === "right" ? "-2px 0 8px rgba(0,0,0,0.15)" : "2px 0 8px rgba(0,0,0,0.15)",
           }}
         >

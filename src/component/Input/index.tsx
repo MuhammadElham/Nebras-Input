@@ -56,6 +56,7 @@ class Input extends Component<IInputProps, IInputState> {
     // Open Drawer
     setDrawer({ open: true, position: "right", size: "lg" });
   }
+  // commenting
   // async handleOpenHelpPanel(fieldid: string, helpwhere: string, displayhelpobject: string, processcode: string) {
   //   this.setState({ loading: true });
 
@@ -220,7 +221,6 @@ class Input extends Component<IInputProps, IInputState> {
                     maxLength={inputlength}
                     type={inputType}
                     name={fieldid}
-                    // value={defaultValue}
                     // value={defaultValue}
                     autoComplete="off"
                     disabled={isDisabled}

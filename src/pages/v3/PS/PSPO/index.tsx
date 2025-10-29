@@ -25,7 +25,7 @@ class Change extends Component<{}, IChangeState> {
     };
   }
   handleDisplayClick = () => {
-    this.setState((prevState) => ({ showDisplayTabs: !prevState.showDisplayTabs }));
+    this.setState((prevState) => ({ showDisplayTabs: !prevState.showDisplayTabs })); // if(displayButton) clicked ? showDisplay : openHeader
   };
   handleHeaderToggle = () => {
     this.setState((prevState) => ({
@@ -94,7 +94,7 @@ class Change extends Component<{}, IChangeState> {
                 </div>
               )}
               className={styles.accordionItem}
-              initialEntered={!showDisplayTabs} 
+              initialEntered={!showDisplayTabs}
             >
               {!showDisplayTabs && (
                 <>
