@@ -110343,10 +110343,11 @@ const webConfigSlice = createSlice({
       const field = state.inputFields.inputs.find((input) => input.fieldid === action.payload.fieldid);
       if(field){
         field.defaultvalue = action.payload.newValue;
+       
       }
     },
   },
 });
 
-export const { setLoading, setDrawer, changeInputField } = webConfigSlice.actions;
+export const { setLoading, setDrawer,changeInputField } = webConfigSlice.actions;
 export default webConfigSlice.reducer;

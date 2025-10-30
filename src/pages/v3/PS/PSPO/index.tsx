@@ -11,27 +11,20 @@ import TermsTab from "../../../../component/Change/DisplayTabs/tabs/TermsTab";
 import ControllerTab from "../../../../component/Change/DisplayTabs/tabs/ControllerTab";
 import AdministrationTab from "../../../../component/Change/DisplayTabs/tabs/AdministrationTab";
 
-interface IChangeState {
+interface IPSPOState {
   activeTab: string;
+}
+interface IPSPOProps {
   showDisplayTabs: boolean;
+  onDisplayClick: any;
 }
 
-class Change extends Component<{}, IChangeState> {
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      activeTab: "basicData",
-      showDisplayTabs: false,
-    };
-  }
-  handleDisplayClick = () => {
-    this.setState((prevState) => ({ showDisplayTabs: !prevState.showDisplayTabs })); // if(displayButton) clicked ? showDisplay : openHeader
+class PSPO extends Component<IPSPOProps, IPSPOState> {
+  
+  state: IPSPOState = {
+    activeTab: "basicData",
   };
-  handleHeaderToggle = () => {
-    this.setState((prevState) => ({
-      showDisplayTabs: !prevState.showDisplayTabs,
-    }));
-  };
+
   handleTabClick = (tabName: string) => {
     this.setState({ activeTab: tabName });
   };
@@ -46,47 +39,17 @@ class Change extends Component<{}, IChangeState> {
   ];
 
   render() {
-    const { activeTab, showDisplayTabs } = this.state;
+    const { activeTab } = this.state;
+    const { showDisplayTabs } = this.props;
 
     return (
       <section>
-        {/* NavBar */}
-        <div className={styles.changeContainer}>
-          <div className={styles.navBar}>
-            <div className={styles.iconText}>
-              <Building size={22} />
-              <span>01</span>
-            </div>
-
-            <h2>Change Purchase Order</h2>
-          </div>
-          {/* buttons */}
-          <div className={styles.buttonGroup}>
-            <button className={styles.btn}>
-              <Check size={20} />
-              Validate
-            </button>
-            <button className={styles.btn} onClick={this.handleDisplayClick}>
-              <Monitor size={20} />
-              Display
-            </button>
-            <button className={styles.btn}>
-              <RotateCcw size={20} />
-              Reload
-            </button>
-            <button className={styles.btn}>
-              <CircleX size={20} />
-              Cancel
-            </button>
-          </div>
-        </div>
-
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {/* Header Information */}
           <Accordion>
             <AccordionItem
               header={({ state }) => (
-                <div className={styles.headerInfo} onClick={this.handleHeaderToggle}>
+                <div className={styles.headerInfo} onClick={this.props.onDisplayClick}>
                   {/* Icon */}
                   {!showDisplayTabs ? <Minus size={20} /> : <Plus size={20} />}
                   {/* Heading */}
@@ -175,4 +138,4 @@ class Change extends Component<{}, IChangeState> {
     );
   }
 }
-export default Change;
+export default PSPO;

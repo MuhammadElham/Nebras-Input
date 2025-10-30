@@ -7,7 +7,7 @@ import Icon from "../Icon/index"; // make it dummy
 import { fetchHelpData } from "@/utils/global-utils"; // make it dummy
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { changeInputField, setDrawer, setLoading } from "../../redux/inputConfig";
+import {  changeInputField, setDrawer, setLoading } from "../../redux/inputConfig";
 
 // custom interface
 interface ILoggeedInUserData {
@@ -111,7 +111,7 @@ class Input extends Component<IInputProps, IInputState> {
       isDisabled,
       customError,
       isError,
-      defaultValue,
+      defaultvalue,
       isChangeable, // ?
     } = item;
     const { docKey } = loggedInUserData.screenVM || {};
@@ -180,7 +180,7 @@ class Input extends Component<IInputProps, IInputState> {
               }  font-sm  font-R-Regular ${isMandatory && isError ? "backgroundColorError" : ""}`}
               showIcon
               // todayButton="Today"
-              selected={defaultValue || new Date()}
+              selected={defaultvalue || new Date()}
               onChange={(e) => {
                 if (isChangeable) {
                   const isoDate = e?.toISOString();
@@ -210,7 +210,7 @@ class Input extends Component<IInputProps, IInputState> {
                   onChange={(e) => isChangeable && this.props.handleChangeInputFields({ fieldid, newValue: e.target.value })}
                   required={isMandatory}
                   name={fieldid}
-                  value={defaultValue}
+                  value={defaultvalue}
                   className={`${isMandatory && isError && inputStyles.textAreaOverride} font-sm  font-R-Regular`}
                 />
               ) : (
@@ -221,7 +221,7 @@ class Input extends Component<IInputProps, IInputState> {
                     maxLength={inputlength}
                     type={inputType}
                     name={fieldid}
-                    // value={defaultValue}
+                    // value={defaultvalue}
                     autoComplete="off"
                     disabled={isDisabled}
                     className={`font-sm font-R-Regular ${inputClass}`} // inputClass have only className
@@ -246,7 +246,7 @@ class Input extends Component<IInputProps, IInputState> {
               )}
             </>
           )}
-          {/* {isMandatory && !defaultValue && isError && (
+          {/* {isMandatory && !defaultvalue && isError && (
             <span style={{ width: "24%", color: "red" }} className="font-xs font-R-SemiBold">
               {customError || "Field is Required"}
             </span>

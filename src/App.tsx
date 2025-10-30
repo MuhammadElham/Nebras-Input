@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Change from "@/pages/v3/PS/PSPO";
+import PSPOWithFormUI from "@/utils/base-utils/form-ui";
 import styles from "@/index.module.scss";
 import Loader from "./component/Loader";
 import Error from "./component/Error";
@@ -8,34 +8,28 @@ import { connect } from "react-redux";
 
 interface IAppProps {
   loading: boolean;
-  drawerOpen: boolean;
 }
 
 class App extends Component<IAppProps> {
   render() {
-    const { loading, drawerOpen } = this.props;
-    
+    const { loading } = this.props;
+
     return (
-
       <div className={styles.appWrapper}>
-
         {loading && <Loader />}
 
         {/* <Error /> */}
 
-        <Change />
+        <PSPOWithFormUI />
 
         <Drawer />
-
       </div>
-
     );
   }
 }
 
 const mapStateToProps = (state: any) => ({
   loading: state.inputFields.loading,
-  drawerOpen: state.inputFields.drawerConfig.open,
 });
 
 export default connect(mapStateToProps)(App);
