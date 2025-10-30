@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Download, Blocks } from "lucide-react";
 import { AgGridReact } from "ag-grid-react";
 import { connect } from "react-redux";
 import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
@@ -19,7 +18,7 @@ interface ScreenGridState {
   allColumnsEditable: boolean;
 }
 
-class PurchaseLineTab extends Component<ScreenGridProps, ScreenGridState> {
+class RandomGrid extends Component<ScreenGridProps, ScreenGridState> {
   constructor(props: ScreenGridProps) {
     super(props);
 
@@ -186,4 +185,4 @@ const mapStateToProps = (state: any) => ({
   gridHeaderRedux: state.inputFields.Grids[4]?.Headers,
 });
 
-export default connect(mapStateToProps)(PurchaseLineTab);
+export default connect(mapStateToProps)(RandomGrid);

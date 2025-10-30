@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import style from "@/index.module.scss";
-import PurchaseLinesTab from "../Change/DisplayTabs/tabs/PurchaseLinesTab";
+import RandomGrid from "../RandomGrid";
 import { connect } from "react-redux";
 import { setDrawer } from "../../redux/inputConfig";
 
@@ -46,7 +46,7 @@ class Drawer extends Component<IDrawerProps> {
           </div>
           {/* Content */}
           <div>
-            <PurchaseLinesTab />
+            <RandomGrid />
           </div>
         </div>
       </>
