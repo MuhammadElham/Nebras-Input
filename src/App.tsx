@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import PSPOWithFormUI from "@/utils/base-utils/form-ui";
+import PSPO from "./pages/v3/PS/PSPO";
 import styles from "@/index.module.scss";
 import Loader from "./component/Loader";
-import Error from "./component/Error";
+// import Error from "./component/Error";
 import Drawer from "./component/Drawer";
 import { connect } from "react-redux";
 
@@ -20,7 +20,7 @@ class App extends Component<IAppProps> {
 
         {/* <Error /> */}
 
-        <PSPOWithFormUI />
+        <PSPO />
 
         <Drawer />
       </div>

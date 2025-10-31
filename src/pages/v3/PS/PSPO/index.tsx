@@ -6,18 +6,23 @@ import Input from "../../../../component/Input";
 import TestDisplay from "../../../../component/Input/TextHeading";
 import TextHeading from "../../../../component/Input/TextHeading";
 import RandomGrid from "../../../../component/RandomGrid";
+import withFormUI from "../../../../utils/base-utils/form-ui";
 
 interface IPSPOState {
   activeTab: string;
-}
-interface IPSPOProps {
   showDisplayTabs: boolean;
-  onDisplayClick: any;
 }
 
-class PSPO extends Component<IPSPOProps, IPSPOState> {
+class PSPO extends Component<{}, IPSPOState> {
   state: IPSPOState = {
     activeTab: "basicData",
+    // add
+    showDisplayTabs: false,
+  };
+
+  // add
+  handleDisplayClick = () => {
+    this.setState((prevState) => ({ showDisplayTabs: !prevState.showDisplayTabs }));
   };
 
   handleTabClick = (tabName: string) => {
@@ -112,8 +117,7 @@ class PSPO extends Component<IPSPOProps, IPSPOState> {
   ];
 
   render() {
-    const { activeTab } = this.state;
-    const { showDisplayTabs } = this.props;
+    const { activeTab, showDisplayTabs } = this.state;
 
     const ActiveComponent: any = this.tabs.find((t: any) => t.id == this.state.activeTab)?.content;
 
@@ -124,7 +128,7 @@ class PSPO extends Component<IPSPOProps, IPSPOState> {
           <Accordion>
             <AccordionItem
               header={({ state }) => (
-                <div className={styles.headerInfo} onClick={this.props.onDisplayClick}>
+                <div className={styles.headerInfo} onClick={this.handleDisplayClick}>
                   {/* Icon */}
                   {!showDisplayTabs ? <Minus size={20} /> : <Plus size={20} />}
                   {/* Heading */}
@@ -206,5 +210,4 @@ class PSPO extends Component<IPSPOProps, IPSPOState> {
     );
   }
 }
-
-export default PSPO;
+export default withFormUI(PSPO);

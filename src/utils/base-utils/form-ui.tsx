@@ -1,26 +1,23 @@
 import { Component } from "react";
-import PSPO from "../../pages/v3/PS/PSPO";
 import styles from "@/index.module.scss";
 import { Building, Check, Monitor, RotateCcw, CircleX } from "lucide-react";
 
-interface IInnerWrapped {
+interface IInnerWrappedState {
   showDisplayTabs: boolean;
 }
 
-const withFormUI = (WrapperComponent: any) => {
-  return class InnerWrapped extends Component<{}, IInnerWrapped> {
-    constructor(props: {}) {
-      super(props);
-      this.state = {
-        showDisplayTabs: false,
-      };
-    }
+const withFormUI = (WrappedComponent: any) => {
+  return class InnerWrapped extends Component<{}, IInnerWrappedState> {
+    state: IInnerWrappedState = {
+      showDisplayTabs: false,
+    };
+
     handleDisplayClick = () => {
-      this.setState((prevState) => ({ showDisplayTabs: !prevState.showDisplayTabs })); // if(displayButton) clicked ? showDisplay : openHeader
+      this.setState((prevState) => ({ showDisplayTabs: !prevState.showDisplayTabs }));
     };
     render() {
       return (
-        <section>
+        <header>
           {/* NavBar */}
           <div className={styles.changeContainer}>
             <div className={styles.navBar}>
@@ -51,11 +48,11 @@ const withFormUI = (WrapperComponent: any) => {
               </button>
             </div>
           </div>
-          {/*  */}
-          <WrapperComponent {...this.props} showDisplayTabs={this.state.showDisplayTabs} onDisplayClick={this.handleDisplayClick} />
-        </section>
+          {/* Wrapper */}
+          <WrappedComponent />
+        </header>
       );
     }
-  }
+  };
 };
-export default withFormUI(PSPO);
+export default withFormUI;
