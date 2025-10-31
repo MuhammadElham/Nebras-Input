@@ -105,9 +105,7 @@ class RandomGrid extends Component<ScreenGridProps, ScreenGridState> {
     }
 
     // Step 4: Generate new LineID
-    console.log("rowData = ", rowData);
     const existingIds = rowData.map((row) => parseInt(row.lineid)).filter((id) => !isNaN(id));
-    console.log("existingIds = ", existingIds);
 
     const maxId = existingIds.length > 0 ? Math.max(...existingIds) : 0;
     const lineId = (maxId + 1).toString().padStart(3, "0");
@@ -182,7 +180,7 @@ class RandomGrid extends Component<ScreenGridProps, ScreenGridState> {
 
 // calling Redux
 const mapStateToProps = (state: any) => ({
-  gridHeaderRedux: state.inputFields.Grids[4]?.Headers,
+  gridHeaderRedux: state.inputFields.loggedInUserData.screenVM.Configuration.Grids[4]?.Headers,
 });
 
 export default connect(mapStateToProps)(RandomGrid);

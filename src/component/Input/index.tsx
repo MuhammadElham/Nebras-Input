@@ -7,12 +7,11 @@ import Icon from "../Icon/index"; // make it dummy
 import { fetchHelpData } from "@/utils/global-utils"; // make it dummy
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {  changeInputField, setDrawer, setLoading } from "../../redux/inputConfig";
+import { changeInputField, setDrawer, setLoading } from "../../redux/inputConfig";
 
 // custom interface
 interface ILoggeedInUserData {
   screenVM: {
-    // ?
     docKey: string;
   };
 }
@@ -27,6 +26,7 @@ interface IInputProps extends IReducerProps {
   loggedInUserData: ILoggeedInUserData; // custom
   setLoading: any; // custom
   setDrawer: any; // custom
+  handleChangeInputFields: any; // custom
 }
 
 interface IInputState {
@@ -83,18 +83,16 @@ class Input extends Component<IInputProps, IInputState> {
     // console.log("this.props = ", this.props);
     // console.log("providedItem = ", providedItem); // ?
     // console.log("isCriteriaPanel = ", isCriteriaPanel); // ?
-
     // console.log("logged In User Data = ", loggedInUserData);
 
     if (!inputFields || !loggedInUserData) return;
 
     const item =
       providedItem ||
-      inputFields?.inputs?.find((item: any) => {
+      inputFields?.Config?.find((item: any) => { // i change these inputFields?.input
         return item?.fieldid === fieldid;
       });
 
-    // console.log("loggedInUserData = ", loggedInUserData);
     // console.log("item:", item);
 
     if (!item) return;
@@ -118,9 +116,8 @@ class Input extends Component<IInputProps, IInputState> {
     // console.log("docKey = ", docKey);
     // console.log("changeAble = ", isChangeable);
 
-    // const styledInput = docKey == fieldid && !providedItem;
-    const styledInput = Array.isArray(docKey) ? docKey.includes(fieldid) && !providedItem : docKey == fieldid && !providedItem; // custom made
-    // console.log("styledInput = ", styledInput);
+    // const styledInput = docKey == fieldid && !providedItem; commenting
+    const styledInput = true; 
     const isMandatory = ismandatorybeforecreate || ismandatoryaftercreate;
     const inputType = controltype === "TXT" ? "text" : controltype === "DTE" ? "DTE" : "number";
 
@@ -135,7 +132,7 @@ class Input extends Component<IInputProps, IInputState> {
         : inputlength <= 25
         ? inputStyles["input-md"]
         : inputStyles["input-lg"]
-    } ${styledInput ? inputStyles.dockeyOverrideStyles : ""}`; // adding more styles
+    } ${styledInput ? inputStyles.dockeyOverrideStyles : ""}`;
 
     // console.log("inputClass = ", inputClass); // only return className
 
@@ -161,7 +158,7 @@ class Input extends Component<IInputProps, IInputState> {
             // docKey !== fieldid
             <label
               className={` ${styledInput ? `${inputStyles.dockeyLabel}  font-sm fw-300` : ""}  font-xs font-R-SemiBold border-light`}
-              // style={{ width: "24%" }} commenting
+              style={{ width: "24%" }} 
             >
               {label}
               {isMandatory && (
@@ -263,7 +260,7 @@ class Input extends Component<IInputProps, IInputState> {
 // });
 // export default connect(mapStateToProps)(Input);
 const mapStateToProps = (state: any) => ({
-  inputFields: state.inputFields.inputFields,
+  inputFields: state.inputFields.loggedInUserData.screenVM.Configuration.Fields,
   loggedInUserData: state.inputFields.loggedInUserData,
 });
 const mapDispatchToProps = {

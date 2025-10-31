@@ -87,14 +87,17 @@
         // border: 2px solid red;
         padding: 0.5rem 0.25rem;
         padding-right: 0.40rem;
-        // text-align: right; commenting 
-        // width: 160px; commenting
+        // commenting
+        text-align: right;
+        // commenting  
+        width: 160px;
         color: $default;
         // color: red;
         // min-width: 160px;
         // max-width: 160px;
         position: relative;
-        // min-width: 160px; commenting
+        // commenting
+        min-width: 160px;
 
         // 
         white-space: normal;
@@ -114,10 +117,13 @@
 
     .dockeyLabel {
         padding: 0.2rem 0.25rem !important;
-        // min-width: 160px !important; commenting
-        // width: 160px !important; commenting
+        // commenting
+        min-width: 160px !important;
+        // commenting 
+        width: 160px !important;
         padding-right: 0.40rem !important;
-        // color: $purple !important; commenting
+        // commenting
+        color: $purple !important;
         font-size: 1rem !important;
 
 
@@ -227,7 +233,8 @@
 .docKeyContainer {
 
     border: none !important;
-    // border-bottom: 2px solid $purple !important; commenting
+    // commenting
+    border-bottom: 2px solid $purple !important;
     // width: 70%;
     // margin: 0 17%;/
     // max-width: 00px;
@@ -243,7 +250,7 @@
     // padding: 20px !important;
 }
 
-// My SCSS
+// My SCSS code
 .appWrapper {
     min-height: 100vh;
     background-color: #f1f1f1;
@@ -304,7 +311,7 @@ h2,
 h1 {
     color: rgb(78, 78, 78);
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .accordionItem {

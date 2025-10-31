@@ -20,7 +20,7 @@ class TestDisplay extends Component<ITextDisplay> {
 }
 
 const mapStateToProps = (state: any) => ({
-  inputField: state.inputFields.inputFields,
+  inputField: state.inputFields.loggedInUserData.screenVM.Configuration.Fields,
 });
 
 export default connect(mapStateToProps)(TestDisplay);
